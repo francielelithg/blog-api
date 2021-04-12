@@ -1,0 +1,98 @@
+service: blog-api
+app: blog-api
+org: hausoffran
+
+frameworkVersion: '2'
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+
+functions:
+
+  #authors
+  getAllAuthors:
+    handler: src/main/controllers/author.getAllAuthors
+    events:
+      - http:
+          path: author
+          method: get
+          cors: true
+
+  getAuthor:
+    handler: src/main/controllers/author.getAuthor
+    events:
+      - http:
+          path: author/{id}
+          method: get
+          cors: true
+
+  createAuthor:
+    handler: src/main/controllers/author.createAuthor
+    events:
+      - http:
+          path: author
+          method: post
+          cors: true
+
+  updateAuthor:
+    handler: src/main/controllers/author.updateAuthor
+    events:
+      - http:
+          path: author/{id}
+          method: put
+          cors: true
+
+  deleteAuthor:
+    handler: src/main/controllers/author.deleteAuthor
+    events:
+      - http:
+          path: author/{id}
+          method: delete
+          cors: true
+
+  #publications
+  getAllPublications:
+    handler: src/main/controllers/publication.getAllPublications
+    events:
+      - http:
+          path: publication
+          method: get
+          cors: true
+
+  getPublication:
+    handler: src/main/controllers/publication.getPublication
+    events:
+      - http:
+          path: publication/{id}
+          method: get
+          cors: true
+
+  createPublication:
+    handler: src/main/controllers/publication.createPublication
+    events:
+      - http:
+          path: publication
+          method: post
+          cors: true
+
+  updatePublication:
+    handler: src/main/controllers/publication.updatePublication
+    events:
+      - http:
+          path: publication/{id}
+          method: put
+          cors: true
+
+  deletePublication:
+    handler: src/main/controllers/publication.deletePublication
+    events:
+      - http:
+          path: publication/{id}
+          method: delete
+          cors: true
