@@ -42,7 +42,7 @@ module.exports.createPublication = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
-        body: "Publication updated!"
+        body: JSON.stringify(res)
       })
     })
     .catch(e => {
@@ -77,7 +77,7 @@ module.exports.deletePublication = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
-        body: "Publication deleted!"
+        body: JSON.stringify(res)
       })
     })
     .catch(e => {

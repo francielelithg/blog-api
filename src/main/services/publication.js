@@ -1,8 +1,8 @@
-const Publication = require("../models").publication
+const { publication } = require("../models")
 
 module.exports.getAll = () => {
   return new Promise((resolve, reject) => {
-    Publication.findAll()
+    publication.findAll()
       .then(res => {
         resolve(res)
       })
@@ -14,7 +14,7 @@ module.exports.getAll = () => {
 
 module.exports.getById = (id) => {
   return new Promise((resolve, reject) => {
-    Publication.findByPk(id)
+    publication.findOne({ where: { id: id } })
       .then(res => {
         resolve(res)
       })
@@ -26,7 +26,7 @@ module.exports.getById = (id) => {
 
 module.exports.create = (data) => {
   return new Promise((resolve, reject) => {
-    Publication.create(data)
+    publication.create(data)
       .then(res => {
         resolve(res)
       })
@@ -38,7 +38,7 @@ module.exports.create = (data) => {
 
 module.exports.update = (id, data) => {
   return new Promise((resolve, reject) => {
-    Publication.update(data, { where: { id: id } })
+    publication.update(data, { where: { id: id } })
       .then(res => {
         resolve(res)
       })
@@ -50,7 +50,7 @@ module.exports.update = (id, data) => {
 
 module.exports.delete = (id) => {
   return new Promise((resolve, reject) => {
-    Publication.destroy({ where: { id: id } })
+    publication.destroy({ where: { id: id } })
       .then(res => {
         resolve(res)
       })
