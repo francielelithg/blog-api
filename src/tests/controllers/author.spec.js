@@ -4,7 +4,7 @@ const request = require('supertest')
 const api = `http://localhost:3000`
 
 describe('author controller', () => {
-  let userId
+  let authorId
 
   test('GET/ getAll', async (done) => {
     request(api)
@@ -42,7 +42,7 @@ describe('author controller', () => {
         birth: new Date('08/05/1967').toISOString()
       })
       .then(response => {
-        if (response.body.id) userId = response.body.id
+        if (response.body.id) authorId = response.body.id
         expect(typeof response.body.id).toBe('number')
         expect(response.body.firstName).toEqual('Franciele')
         done()
@@ -51,7 +51,7 @@ describe('author controller', () => {
 
   test('PUT/ update', async (done) => {
     request(api)
-      .put(`/author/${userId}`)
+      .put(`/author/${authorId}`)
       .set('Content-Type', 'application/json')
       .send({
 		    email: 'fran_lithg@live.com',
@@ -66,7 +66,7 @@ describe('author controller', () => {
   test('DELETE/ delete', async (done) => {
     jest.setTimeout(20000)
     request(api)
-      .delete(`/author/${userId}`)
+      .delete(`/author/${authorId}`)
       .expect(200)
       .then(response => {
         console.log(response.body)
