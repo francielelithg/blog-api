@@ -6,6 +6,8 @@ const config = require("../../../config/db")
 
 const db = {}
 
+console.log(config)
+
 const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
   port: config.PORT,
   host: config.HOST,

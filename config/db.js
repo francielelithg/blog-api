@@ -1,7 +1,7 @@
 module.exports =  {
-  DB: 'postgres',
-	HOST: 'blog.cj9uxt898k0n.us-east-1.rds.amazonaws.com',
-	PORT: '5432',
-	USER: 'master',
-	PASSWORD: 'Blog0504'
+  DB: process.env.DB,
+	HOST: process.env.DBHOST,
+	PORT: process.env.DBPORT,
+	USER: process.env.DBUSER,
+	PASSWORD: process.env.DBPASSWORD
 }
