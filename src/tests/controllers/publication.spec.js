@@ -1,10 +1,28 @@
-const publicationMock = require('../_mocks/publication')
-const publication = require('../../main/services/publication')
+const author = require('../../main/services/author')
 const request = require('supertest')
 const api = `http://localhost:3000`
 
 describe('publication controller', () => {
   let publicationId
+  let authorId
+
+  beforeAll(() => {
+    author.getById(1)
+      .then(result => {
+        authorId = result.id
+      })
+      .catch(() => {
+        author.create({
+          firstName: 'Franciele',
+          lastName: 'Lithg',
+          email: 'francielelithg@gmail.com',
+          birth: new Date('06/14/1995').toISOString()
+        })
+          .then(response => {
+            authorId = response.id
+          })
+      })
+  })
 
   test('GET/ getAll', async (done) => {
     request(api)
@@ -27,18 +45,12 @@ describe('publication controller', () => {
   })
 
   test('POST/ create', async (done) => {
-    const data = {
-      firstName: 'Franciele',
-		  lastName: 'Lithg',
-		  email: 'francielelithg@gmail.com',
-		  birth: new Date('06/14/1995').toISOString()
-    }
     request(api)
       .post('/publication')
       .send({
         title: 'My test post',
         body: 'This is my test post on blog.',
-        authorId: 1,
+        authorId: authorId,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       })
@@ -70,7 +82,6 @@ describe('publication controller', () => {
       .delete(`/publication/${publicationId}`)
       .expect(200)
       .then(response => {
-        console.log(response.body)
         expect(response.body).toEqual(1)
         done()
       })

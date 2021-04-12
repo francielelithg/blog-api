@@ -1,5 +1,3 @@
-const authorMock = require('../_mocks/author')
-const author = require('../../main/services/author')
 const request = require('supertest')
 const api = `http://localhost:3000`
 
@@ -27,12 +25,6 @@ describe('author controller', () => {
   })
 
   test('POST/ create', async (done) => {
-    const data = {
-      firstName: 'Franciele',
-		  lastName: 'Lithg',
-		  email: 'francielelithg@gmail.com',
-		  birth: new Date('06/14/1995').toISOString()
-    }
     request(api)
       .post('/author')
       .send({
@@ -69,7 +61,6 @@ describe('author controller', () => {
       .delete(`/author/${authorId}`)
       .expect(200)
       .then(response => {
-        console.log(response.body)
         expect(response.body).toEqual(1)
         done()
       })
