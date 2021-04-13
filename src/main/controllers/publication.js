@@ -2,7 +2,8 @@ const service = require('../services/publication')
 
 module.exports.getAllPublications = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false
-  service.getAll()
+  const query = event.queryStringParameters
+  service.getAll(query)
     .then(res => {
       callback(null, {
         statusCode: 200,

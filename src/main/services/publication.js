@@ -1,8 +1,24 @@
 const { publication } = require("../models")
 
-module.exports.getAll = () => {
+module.exports.getAll = (query) => {
   return new Promise((resolve, reject) => {
-    publication.findAll()
+    let options = {}
+
+    if (query) {
+      if (query.limit) {
+        options.limit = query.limit
+        delete query.limit
+      }
+
+      if (query.offset) {
+        options.limit = query.offset
+        delete query.offset
+      }
+
+      options.where = query
+    }
+
+    publication.findAll(options)
       .then(res => {
         resolve(res)
       })
