@@ -31,6 +31,7 @@ module.exports = (sequelize, Sequelize) => {
   Model.associate = models => {
     Model.hasMany(models.publication, {
       foreignKey: 'id',
+      otherKey: 'author_id',
       onDelete: 'CASCADE'
     })
   }
