@@ -6,8 +6,6 @@ const config = require("../../../config/db")
 
 const db = {}
 
-console.log(config)
-
 const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
   port: config.PORT,
   host: config.HOST,
@@ -31,7 +29,7 @@ sequelize.authenticate()
     console.log('Connected to SQL database:', config.DB);
   })
   .catch(err => {
-    console.error('Unable to connect to SQL database:', config.DB, err)
+    console.error('Unable to connect to SQL database: ', config.DB, err)
   })
 
 fs.readdirSync(__dirname)
