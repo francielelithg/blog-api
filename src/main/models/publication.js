@@ -30,5 +30,9 @@ module.exports = (sequelize, Sequelize) => {
     }
   })
 
+  Model.associate = models => {
+    Model.belongsTo(models.author)
+  }
+
   return Model
 }

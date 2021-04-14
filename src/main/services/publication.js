@@ -1,4 +1,4 @@
-const { publication } = require("../models")
+const { author, publication } = require("../models")
 
 module.exports.getAll = (query) => {
   return new Promise((resolve, reject) => {
@@ -16,6 +16,11 @@ module.exports.getAll = (query) => {
       }
 
       options.where = query
+    }
+
+    options = {
+      ...options,
+      include: author
     }
 
     publication.findAll(options)
