@@ -7,17 +7,17 @@ jest.mock('../../main/models/author', () => () => {
   authorMock.$queueResult([
     authorMock.build({
       id: 1,
-      firstName: 'Franciele',
-		  lastName: 'Lithg',
-		  email: 'francielelithg@gmail.com',
+      firstName: 'Rita',
+		  lastName: 'Hall',
+		  email: 'ritahall@gmail.com',
 		  birth: new Date('06/14/1995').toISOString()
     }),
     authorMock.build({
       id: 2,
       firstName: 'Lilian',
-      lastName: 'Lithg',
-      email: 'lilianlithg@gmail.com',
-      birth: new Date('12/05/2008').toISOString()
+      lastName: 'Collins',
+      email: 'liliancollins@gmail.com',
+      birth: new Date('12/05/1999').toISOString()
     })
   ])
 

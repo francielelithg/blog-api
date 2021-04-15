@@ -14,29 +14,29 @@ describe('author controller', () => {
       })
   })
 
-  test('GET/ getById', async (done) => {
-    request(api)
-      .get('/author/1')
-      .expect(200)
-      .then(response => {
-        expect(response.body.firstName).toEqual('Franciele')
-        done()
-      })
-  })
-
   test('POST/ create', async (done) => {
     request(api)
       .post('/author')
       .send({
-        firstName: 'Franciele',
-		    lastName: 'Lithg',
-        email: 'francielelithg@gmail.com',
+        firstName: 'Rita',
+		    lastName: 'Hall',
+        email: 'ritahall@gmail.com',
         birth: new Date('08/05/1967').toISOString()
       })
       .then(response => {
         if (response.body.id) authorId = response.body.id
         expect(typeof response.body.id).toBe('number')
-        expect(response.body.firstName).toEqual('Franciele')
+        expect(response.body.firstName).toEqual('Rita')
+        done()
+      })
+  })
+
+  test('GET/ getById', async (done) => {
+    request(api)
+      .get(`/author/${authorId}`)
+      .expect(200)
+      .then(response => {
+        expect(response.body.firstName).toEqual('Rita')
         done()
       })
   })
@@ -46,7 +46,7 @@ describe('author controller', () => {
       .put(`/author/${authorId}`)
       .set('Content-Type', 'application/json')
       .send({
-		    email: 'fran_lithg@live.com',
+		    email: 'emailsuer@live.com',
       })
       .expect(200)
       .then(response => {

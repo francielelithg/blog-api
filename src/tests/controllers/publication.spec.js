@@ -6,57 +6,27 @@ describe('publication controller', () => {
   let publicationId
   let authorId
 
-  beforeAll(() => {
-    author.getById(1)
-      .then(result => {
-        authorId = result.id
-      })
-      .catch(() => {
-        author.create({
-          firstName: 'Franciele',
-          lastName: 'Lithg',
-          email: 'francielelithg@gmail.com',
-          birth: new Date('06/14/1995').toISOString()
-        })
-          .then(response => {
-            authorId = response.id
-          })
-      })
-  })
-
-  test('GET/ getAll', async (done) => {
-    request(api)
-      .get('/publication')
-      .expect(200)
-      .then(response => {
-        expect(typeof response.body).toBe('object')
-        done()
-      })
-  })
-
-  test('GET/ getById', async (done) => {
-    request(api)
-      .get('/publication/2')
-      .expect(200)
-      .then(response => {
-        expect(response.body.title).toEqual('My first publication')
-        done()
-      })
-  })
-
   test('POST/ create', async (done) => {
     request(api)
       .post('/publication')
       .send({
         title: 'My test post',
         body: 'This is my test post on blog.',
-        authorId: authorId,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
+        authorId: 4
       })
       .then(response => {
         if (response.body.id) publicationId = response.body.id
         expect(typeof response.body.id).toBe('number')
+        expect(response.body.title).toEqual('My test post')
+        done()
+      })
+  })
+
+  test('GET/ getById', async (done) => {
+    request(api)
+      .get(`/publication/${publicationId}`)
+      .expect(200)
+      .then(response => {
         expect(response.body.title).toEqual('My test post')
         done()
       })

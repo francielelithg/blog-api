@@ -18,19 +18,19 @@ describe('author service', () => {
 	
   test('create', async () => {
     const data = { 
-      firstName: 'Edlamar',
-      lastName: 'Lithg',
-      email: 'edlamarlithg@gmail.com',
+      firstName: 'Eve',
+      lastName: 'Sanders',
+      email: 'evesanders@gmail.com',
       birth: new Date('08/05/1967').toISOString()
     }
     const result = await author.create(data)
-    expect(result.firstName).toEqual('Edlamar')
+    expect(result.firstName).toEqual('Eve')
     expect(typeof result.id).toBe('number')
   })
 
   test('update', async () => {
     const data = { 
-      email: 'fran_lithg@live.com'
+      email: 'newemail@live.com'
     }
     const result = await author.update(1, data)
     expect(result[0]).toEqual(1)
