@@ -7,6 +7,10 @@ module.exports.getAllPublications = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(res)
       })
     })
@@ -14,6 +18,10 @@ module.exports.getAllPublications = (event, context, callback) => {
       console.log(e)
       callback(null, {
         statusCode: e.statusCode || 500,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: 'Could not find publications: ' + e
       })
     })
@@ -25,12 +33,20 @@ module.exports.getPublication = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(res)
       })
     })
     .catch(e => {
       callback(null, {
         statusCode: e.statusCode || 500,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: "Could not find publication: " + e
       })
     })
@@ -43,12 +59,20 @@ module.exports.createPublication = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(res)
       })
     })
     .catch(e => {
       callback(null, {
         statusCode: e.statusCode || 500,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: "Could not create publication " + e
       })
     }) 
@@ -61,12 +85,20 @@ module.exports.updatePublication = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(res)
       })
     })
     .catch(e => {
       callback(null, {
         statusCode: e.statusCode || 500,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: "Could not update publication" + e
       })
     }) 
@@ -78,12 +110,20 @@ module.exports.deletePublication = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(res)
       })
     })
     .catch(e => {
       callback(null, {
         statusCode: e.statusCode || 500,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: "Could not delete Publication" + e
       })
     }) 

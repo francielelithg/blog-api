@@ -6,6 +6,10 @@ module.exports.getAllAuthors = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(res)
       })
     })
@@ -13,6 +17,10 @@ module.exports.getAllAuthors = (event, context, callback) => {
       console.log(e)
       callback(null, {
         statusCode: e.statusCode || 500,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: 'Could not find authors: ' + e
       })
     })
@@ -24,12 +32,20 @@ module.exports.getAuthor = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(res)
       })
     })
     .catch(e => {
       callback(null, {
         statusCode: e.statusCode || 500,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: "Could not find author: " + e
       })
     })
@@ -42,12 +58,20 @@ module.exports.createAuthor = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(res)
       })
     })
     .catch(e => {
       callback(null, {
         statusCode: e.statusCode || 500,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: "Could not create author " + e
       })
     }) 
@@ -60,12 +84,20 @@ module.exports.updateAuthor = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(res)
       })
     })
     .catch(e => {
       callback(null, {
         statusCode: e.statusCode || 500,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: "Could not update author" + e
       })
     }) 
@@ -77,12 +109,20 @@ module.exports.deleteAuthor = (event, context, callback) => {
     .then(res => {
       callback(null, {
         statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(res)
       })
     })
     .catch(e => {
       callback(null, {
         statusCode: e.statusCode || 500,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: "Could not delete Author" + e
       })
     }) 

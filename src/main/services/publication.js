@@ -10,7 +10,7 @@ module.exports.getAll = (query) => {
     if (query) {
       if (query.title) {
         const title = {
-          [Op.iLike]: query.title
+          [Op.iLike]: `%${query.title}%`
         }
         delete query.title
         options.where = { title }
