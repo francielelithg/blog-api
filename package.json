@@ -5,7 +5,8 @@
   "main": "handler.js",
   "scripts": {
     "dev": "serverless offline --noPrependStageInUrl",
-    "test": "jest --forceExit --coverage --runInBand"
+    "test": "jest --forceExit --coverage --runInBand",
+    "build": "serverless deploy"
   },
   "keywords": [],
   "author": "",
