@@ -1,29 +1,34 @@
 const { author, publication } = require("../models")
+const Sequelize = require("sequelize")
+
+const Op = Sequelize.Op
 
 module.exports.getAll = (query) => {
   return new Promise((resolve, reject) => {
     let options = {}
 
     if (query) {
-      if (query.limit) {
-        options.limit = query.limit
-        delete query.limit
+      if (query.title) {
+        const title = {
+          [Op.like]: query.title
+        }
+        delete query.title
+        options.where = { title }
+      } else {
+        options.where = query
       }
 
-      if (query.offset) {
-        options.limit = query.offset
-        delete query.offset
-      }
-
-      options.where = query
     }
 
     options = {
       ...options,
-      include: author
+      include: author,
+      limit: query ? query.limit : null,
+      offset: query ? query.offset : null,
+      order: [['createdAt', 'DESC']]
     }
 
-    publication.findAll(options)
+    publication.findAndCountAll(options)
       .then(res => {
         resolve(res)
       })
@@ -35,7 +40,7 @@ module.exports.getAll = (query) => {
 
 module.exports.getById = (id) => {
   return new Promise((resolve, reject) => {
-    publication.findOne({ where: { id: id } })
+    publication.findOne({ where: { id: id }, include: author })
       .then(res => {
         resolve(res)
       })
