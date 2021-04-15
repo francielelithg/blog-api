@@ -2,7 +2,9 @@ const { author } = require("../models")
 
 module.exports.getAll = () => {
   return new Promise((resolve, reject) => {
-    author.findAll()
+    author.findAll({
+      order: [['firstName', 'ASC'], ['lastName', 'ASC']]
+    })
       .then(res => {
         resolve(res)
       })
