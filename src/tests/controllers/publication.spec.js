@@ -12,7 +12,7 @@ describe('publication controller', () => {
       .send({
         title: 'My test post',
         body: 'This is my test post on blog.',
-        authorId: 4
+        authorId: 1
       })
       .then(response => {
         if (response.body.id) publicationId = response.body.id
